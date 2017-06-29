@@ -1,19 +1,19 @@
 # Adobe-Runtime-Support
 
-Report, track and discuss issues in the Adobe AIR/Flash Runtimes.  
-_It is maintained by the **Starling community** and monitored by **Adobe**._
+Report, track and discuss issues in the Adobe AIR/Flash Runtimes.
+_Maintained by the **Starling community**, monitored by **Adobe**._
 
 This repository does not contain any source code; instead, it's intended to act as an **issue tracker** for bugs and feature requests connected to the *Adobe AIR* and *Flash* runtimes.
 
-Adobe does have its own issue tracker for these matters, namely [Adobe Tracker](https://tracker.adobe.com). 
-This GitHub project is not intended to _replace_ this tracker, but to _complement_ it. 
+Adobe does have its own issue tracker for these matters, namely [Adobe Tracker](https://tracker.adobe.com).
+This GitHub project is not intended to _replace_ this tracker, but to _complement_ it.
 
 ## Why another Issue Tracker?
 
 Adobe's tracker has several deficiencies:
 
 * It's hard to search through its tickets. As a result, equivalent bugs often get reported repeatedly, and they don't get the attention they deserve.
-* It's hard to start a constructive discussion in its comment system. 
+* It's hard to start a constructive discussion in its comment system.
 * Its email notification system provides too little control.
 * Text and source code are often hard to read, due to a lack of Markdown and syntax highlighting.
 
@@ -25,9 +25,9 @@ First of all, use the search feature to find out if somebody already reported a 
 
 ### a) This issue was already reported.
 
-* Vote for that issue. To do that, click on the "Add your reaction" button at the top of the first comment and pick the '+1' symbol.
+* Vote for that issue. To do that, click on the "Add your reaction" button at the top of the first comment and pick the :+1: symbol.
 * If possible, provide additional information by adding a comment.
-* **Important:** also head over to the respective [Adobe Tracker](https://tracker.adobe.com) issue (there should be a link in the GitHub comments) and add your vote there, too. 
+* **Important:** also head over to the respective [Adobe Tracker](https://tracker.adobe.com) issue (there should be a link in the GitHub issue) and add your vote there, too.
 
 ### b) This is a new issue.
 
