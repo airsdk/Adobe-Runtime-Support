@@ -12,8 +12,7 @@ Furthermore, **always** add a link to one or more analog [Adobe Tracker](https:/
 
 ## Steps to Reproduce
 
-Tell use how this issue can be reproduced. Seriously: if you want this issue to be fixed, this is the part you **really** need to get nailed. 
-
+Tell use how this issue can be reproduced. Seriously: if you want this issue to be fixed, this is the part you **really** need to get nailed.
 Give us a minimal example:
 
 * As little code as possible. Get to the root of the problem!
