@@ -6,13 +6,12 @@ Describe your problem in detail. Include the following information:
 * Describe the affected environment: Flash vs. AIR, Android vs. iOS, all devices vs. just specific models.
 * Can you reproduce it yourself, or did you get reports from other users? If so, how many users are affected (percentage)?
 * If applicable, link to the Starling/Feathers issues that brought you here.
-* Don't forget to add suitable labels to the issue (look to the right of this input box)!
 
 Furthermore, **always** add a link to one or more analog [Adobe Tracker](https://tracker.adobe.com) issues. This repository is not a replacement for Adobe's bug tracker!
 
 ## Steps to Reproduce
 
-Tell use how this issue can be reproduced. Seriously: if you want this issue to be fixed, this is the part you **really** need to get nailed.
+Tell us how this issue can be reproduced. Seriously: if you want this issue to be fixed, this is the part you **really** need to get nailed.
 Give us a minimal example:
 
 * As little code as possible. Get to the root of the problem!
