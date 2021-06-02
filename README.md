@@ -18,8 +18,8 @@ That's what this repository is all about.
 
 There are two major parts to this repository:
 
-- [Discussions](https://github.com/Gamua/Adobe-Runtime-Support/discussions) : A discussion forum for questions, ideas and general chat;
-- [Issues](https://github.com/Gamua/Adobe-Runtime-Support/issues) : An issue tracker to report real bugs with the AIR SDK;
+- [Discussions](https://github.com/airsdk/Adobe-Runtime-Support/discussions) : A discussion forum for questions, ideas and general chat;
+- [Issues](https://github.com/airsdk/Adobe-Runtime-Support/issues) : An issue tracker to report real bugs with the AIR SDK;
 
 Always go to the **discussion** section first and only report an **issue** if you are sure it is a bug and have a reproducable case.
 
@@ -27,7 +27,7 @@ Always go to the **discussion** section first and only report an **issue** if yo
 ## I found a bug in the runtime! What do do?!
 
 First of all, use the search feature to find out if somebody already reported a similar issue.
-Also have a look at the [discussions section](https://github.com/Gamua/Adobe-Runtime-Support/discussions)!
+Also have a look at the [discussions section](https://github.com/airsdk/Adobe-Runtime-Support/discussions)!
 
 ### a) This issue was already reported
 
@@ -36,7 +36,7 @@ Also have a look at the [discussions section](https://github.com/Gamua/Adobe-Run
 
 ### b) This is a new issue
 
-* Create a [new issue](https://github.com/Gamua/Adobe-Runtime-Support/issues/new) in this repository.
+* Create a [new issue](https://github.com/airsdk/Adobe-Runtime-Support/issues/new/choose) in this repository.
 * A template will pop up that will help you collect all necessary information.
 * Only a problem that can be reproduced has a chance of being fixed! Thus, create a minimal sample and provide all the information needed to get it running.
 * I can't stress this enough: the easier you make it for Harman to recreate the problem, the higher your chances of a fix!
@@ -45,4 +45,4 @@ Also have a look at the [discussions section](https://github.com/Gamua/Adobe-Run
 ## I've got a question I can't answer
 
 * Do **not** open up a new issue. Instead,
-* head over to the [discussions section](https://github.com/Gamua/Adobe-Runtime-Support/discussions) and ask your question there.
+* head over to the [discussions section](https://github.com/airsdk/Adobe-Runtime-Support/discussions) and ask your question there.
