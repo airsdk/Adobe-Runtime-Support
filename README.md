@@ -7,16 +7,14 @@
 
 <h1 align="center">AIR Issue Tracker and Discussion Forum</h1>
 
----
 
 This project acts as an **issue tracker** for bugs and feature requests connected to the *AIR SDK and Runtime*.
 It does not contain any source code.
 
-The [old issue tracker](https://tracker.adobe.com) is rather cumbersome and limited. 
-For example, it's really hard to search through tickets, so bugs often get reported repeatedly; as a result, they often don't get the attention they deserve.
+---
 
 Now that Harman has taken over AIR development, we need a new place to discuss and report problems and make sure they know what's relevant to the community! 
-That's what this new issue tracker is all about.
+That's what this repository is all about.
 
 There are two major parts to this repository:
 
