@@ -1,0 +1,40 @@
+<project name="MediaBufferRender" default="build">
+	<dirname property="top.project.dir" file="${ant.file}"/>
+	<property environment="env"/>
+	<property name="AIR_SDK_HOME" value="${env.AIR_SDK_HOME}"/>
+	<target name="checkAIRHome" unless="env.AIR_SDK_HOME">
+		<fail message="AIR_SDK_HOME must be set as an environment variable"/>
+	</target>
+
+	<target name="prepare" depends="ane">
+		<property name="ANE_FOLDER" location="${top.project.dir}/swf/bin/META-INF/AIR/extensions/com.harman.ane.MediaBufferRender.ane"/>
+		<mkdir dir="${ANE_FOLDER}"/>
+		<unzip src="MediaBufferRender.ane" dest="${ANE_FOLDER}"/>
+	</target>
+	
+	<target name="run" depends="prepare,swf">
+		
+		<echo message="Running with ADL"/>
+		<exec dir="${top.project.dir}/swf" executable="${AIR_SDK_HOME}/bin/adl.exe">
+			<arg value="app.xml"/>
+			<arg value="bin"/>
+		</exec>
+	</target>
+
+    <target name="ane" depends="checkAIRHome">
+		<ant antfile="ane/build.xml" target="build"/>
+	</target>
+    <target name="swf" depends="ane">
+		<ant antfile="swf/build.xml" target="build"/>
+	</target>
+    <target name="ane_clean">
+		<ant antfile="ane/build.xml" target="clean"/>
+	</target>
+    <target name="swf_clean">
+		<ant antfile="swf/build.xml" target="clean"/>
+	</target>
+
+	<target name="build" depends="ane,swf"/>
+	<target name="clean" depends="ane_clean,swf_clean"/>
+	
+</project>

@@ -1,0 +1,31 @@
+<project name="MediaBufferRender_SWF" default="build">
+
+	<dirname property="swf.project.dir" file="${ant.file}"/>
+	<property name="OUTPUT" location="${swf.project.dir}/bin/MediaBufferRender.swf"/>
+	<property name="OUTPUT_FOLDER" location="${swf.project.dir}/bin"/>
+
+	<taskdef resource="flexTasks.tasks" classpath="${AIR_SDK_HOME}/ant/lib/flexTasks.jar"/>
+
+	<target name="build">
+
+		<mkdir dir="${swf.project.dir}/bin" />
+
+		<!-- compile SWF -->
+		<echo message="Folder = ${user.dir}"/>
+		<mxmlc output="${OUTPUT}" file="${swf.project.dir}/src/com/harman/air/MediaBufferRender.as">
+			<load-config filename="${AIR_SDK_HOME}/frameworks/air-config.xml" />
+			<sp path-element="${swf.project.dir}/src" />
+			<!--<external-library-path file="ane/swc/lib/ExtensionLibrary.swc" append="true"/>-->
+			<external-library-path file="MediaBufferRender.ane" append="true"/>
+			<debug>true</debug>
+			<optimize>true</optimize>
+			<swf-version>51</swf-version>
+		</mxmlc>
+
+	</target>
+
+	<target name="clean">
+		<delete dir="${swf.project.dir}/bin" />
+	</target>
+
+</project>

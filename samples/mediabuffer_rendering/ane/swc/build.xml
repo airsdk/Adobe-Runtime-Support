@@ -1,0 +1,36 @@
+<project name="ExtensionLibrary" default="build">
+
+	<dirname property="swc.project.dir" file="${ant.file}"/>
+	<property name="OUTPUT" location="${swc.project.dir}/lib/ExtensionLibrary.swc"/>
+	<property name="OUTPUT_FOLDER" location="${swc.project.dir}/lib"/>
+
+	<taskdef resource="flexTasks.tasks" classpath="${AIR_SDK_HOME}/ant/lib/flexTasks.jar"/>
+
+	<target name="build">
+
+		<mkdir dir="${swc.project.dir}/lib" />
+
+		<!-- compile SWC -->
+		<compc output="${OUTPUT}">
+			<load-config filename="${AIR_SDK_HOME}/frameworks/air-config.xml" />
+			<sp path-element="${swc.project.dir}/sources" />
+			<include-sources dir="${swc.project.dir}/sources" includes="*"  />
+			<debug>false</debug>
+			<optimize>true</optimize>
+			<swf-version>51</swf-version>
+		</compc>
+
+		<!-- unzip it -->
+		<unzip src="${OUTPUT}" dest="${OUTPUT_FOLDER}">
+			<patternset>
+				<include name="**/library.swf"/>
+			</patternset>
+		</unzip>
+		
+	</target>
+
+	<target name="clean">
+		<delete dir="${swc.project.dir}/lib" />
+	</target>
+
+</project>

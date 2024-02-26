@@ -1,0 +1,67 @@
+<project name="MediaBufferRender_ANE" default="build">
+
+    <target name="swc">
+		<ant antfile="ane/swc/build.xml" target="build"/>
+	</target>
+    <target name="swc_clean">
+		<ant antfile="ane/swc/build.xml" target="clean"/>
+	</target>
+
+	<target name="native_clean">
+		<delete file="MediaBufferRender.dll"/>
+		<delete file="MediaBufferRender.exp"/>
+		<delete file="MediaBufferRender.lib"/>
+		<delete file="MediaBufferRender.obj"/>
+	</target>
+
+	<target name="native">
+		<exec executable="C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\cl.exe" failonerror="true">
+			<arg value="ane/native/MediaBufferRender.c"/>
+			<arg value="-DWIN32"/>
+			<arg value="-I${AIR_SDK_HOME}/include"/>
+			<arg value="/LD"/>
+			<arg value="/link"/>
+			<arg value="${AIR_SDK_HOME}/lib/win/FlashRuntimeExtensions.lib"/>
+		</exec>
+		<copy file="MediaBufferRender.dll" todir="ane/build/windows-platform"/>
+	</target>
+
+	<target name="build" depends="swc,native">
+		<!-- copy the files to the right places -->
+		<mkdir dir="build/default" />
+		<copy file="ane/swc/lib/library.swf" todir="ane/build/windows-platform"/>
+		<copy file="ane/swc/lib/library.swf" todir="ane/build/default"/>
+
+		<!-- run ADT 
+		adt -package -target ane MediaBufferRenderExtension build\extension.xml -swc swc\lib\ExtensionLibrary.swc -platform Windows-x86 -C build\windows-platform .
+		-->
+		<java fork="true" failonerror="yes" jar="${AIR_SDK_HOME}/lib/adt.jar">
+			<arg value="-package"/>
+			<arg value="-target"/>
+			<arg value="ane"/>
+			<arg value="MediaBufferRender"/>
+			<arg value="ane/build/extension.xml"/>
+			<arg value="-swc"/>
+			<arg value="ane/swc/lib/ExtensionLibrary.swc"/>
+			<arg value="-platform"/>
+			<arg value="Windows-x86"/>
+			<arg value="-C"/>
+			<arg value="ane/build/windows-platform"/>
+			<arg value="."/>
+			<arg value="-platform"/>
+			<arg value="default"/>
+			<arg value="-C"/>
+			<arg value="ane/build/default"/>
+			<arg value="."/>
+		</java>
+
+	</target>
+
+	<target name="clean" depends="swc_clean,native_clean">
+		<delete file="ane/build/windows-platform/library.swf"/>
+		<delete file="ane/build/windows-platform/MediaBufferRender.dll"/>
+		<delete file="ane/build/default/library.swf" />
+		<delete file="MediaBufferRender.ane"/>
+	</target>
+	
+</project>
