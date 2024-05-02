@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application xmlns="http://ns.adobe.com/air/application/50.2">
+
+    <id>com.harman.air.TestPAD</id>
+
+    <filename>TestPAD</filename>
+
+    <name>Test Play Asset Delivery</name>
+
+    <versionNumber>0.0.7</versionNumber>
+
+    <extensions>
+        <extensionID>com.harman.PlayAssetDelivery</extensionID>
+        <extensionID>com.google.android.play</extensionID>
+    </extensions>
+
+    <initialWindow>
+        <content>TestPlayAssetDelivery.swf</content>
+        <visible>true</visible>
+        <autoOrients>true</autoOrients>
+        <fullScreen>true</fullScreen>
+    </initialWindow>
+
+    <!-- Specify Android specific tags that get passed to AndroidManifest.xml file. -->
+    <android>
+        <assetPacks>
+                <assetPack id="install_time_asset_pack" delivery="install-time" folder="install_time_asset_pack_files"/>
+                <assetPack id="fast_follow_asset_pack" delivery="fast-follow" folder="fast_follow_asset_pack_files"/>
+                <assetPack id="on_demand_asset_pack" delivery="on-demand" folder="on_demand_asset_pack_files"/>
+        </assetPacks>
+        <!-- adt update needed to support later gradle versions..
+        <androidGradlePluginVersion>8.2.0</androidGradlePluginVersion>
+        <gradleVersion>8.2</gradleVersion>
+        -->
+        <manifestAdditions>
+            <![CDATA[
+            <manifest android:installLocation="auto">
+                <uses-permission android:name="android.permission.INTERNET"/>
+                <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+                <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+                <application android:enabled="true">
+                    <activity
+                        android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+                        android:enabled="false"
+                        android:exported="false"
+                        android:stateNotNeeded="true" />
+                    <service
+                        android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+                        android:enabled="false"
+                        android:exported="true" />
+                    <service
+                        android:name="com.google.android.play.core.assetpacks.ExtractionForegroundService"
+                        android:enabled="false"
+                        android:exported="false" />
+                </application>
+            </manifest>
+            ]]>
+        </manifestAdditions>
+    </android>
+
+</application>

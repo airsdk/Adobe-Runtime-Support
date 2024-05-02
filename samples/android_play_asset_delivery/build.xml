@@ -1,0 +1,52 @@
+<project name="TestPlayAssetDelivery" default="build">
+
+    <property environment="env"/>
+    <property name="AIR_SDK_HOME" value="${env.AIR_SDK_HOME}"/>
+    <target name="checkAIRHome" unless="env.AIR_SDK_HOME">
+        <fail message="AIR_SDK_HOME must be set as an environment variable"/>
+    </target>
+    <property name="ANDROID_SDK_ROOT" value="${env.ANDROID_SDK_ROOT}"/>
+    <target name="checkAndroidRoot" unless="env.ANDROID_SDK_ROOT">
+        <fail message="ANDROID_SDK_ROOT must be set as an environment variable"/>
+    </target>
+
+    <target name="swf">
+        <java fork="true" failonerror="yes" jar="${AIR_SDK_HOME}/lib/mxmlc-cli.jar">
+            <arg value="-load-config=${AIR_SDK_HOME}/frameworks/air-config.xml"/>
+            <arg value="-compiler.external-library-path+=ane/com.harman.PlayAssetDelivery.ane"/>
+            <arg value="-swf-version=44"/>
+            <arg value="-debug=true"/>
+            <arg value="TestPlayAssetDelivery.as"/>
+            <arg value="-output=TestPlayAssetDelivery.swf"/>
+        </java>
+    </target>
+
+    <!-- Note: needs an Android SDK which should be set via the ANDROID_SDK_ROOT environment variable -->
+    <target name="aab">
+        <property environment="env" />
+        <java fork="true" failonerror="yes" jar="${AIR_SDK_HOME}/lib/adt.jar">
+            <arg value="-package"/>
+            <arg value="-target"/>
+            <arg value="aab-debug"/>
+            <arg value="TestPlayAssetDelivery"/>
+            <arg value="app.xml"/>
+            <arg value="TestPlayAssetDelivery.swf"/>
+            <arg value="-C"/>
+            <arg value="assetpacks"/>
+            <arg value="."/>
+            <arg value="-extdir"/>
+            <arg value="ane"/>
+            <arg value="-platformsdk"/>
+            <arg value="${ANDROID_SDK_ROOT}"/>
+        </java>
+
+    </target>
+
+    <target name="build" depends="checkAIRHome,checkAndroidRoot,swf,aab"/>
+    
+    <target name="clean">
+        <delete file="TestPlayAssetDelivery.aab"/>
+        <delete file="TestPlayAssetDelivery.swf"/>
+    </target>
+    
+</project>
