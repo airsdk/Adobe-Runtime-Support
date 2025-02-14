@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<application xmlns="http://ns.adobe.com/air/application/51.1">
+    
+    <id>com.harman.air.AIRDiagnosticsDemo</id>
+    <versionNumber>0.1</versionNumber>
+    <supportedProfiles>mobileDevice</supportedProfiles>
+    <filename>AIRDiagnosticsDemo</filename>
+    
+    <name>AIR Diagnostics Demo</name>
+    <description></description>
+    <copyright></copyright>
+    
+    <android>
+        <manifestAdditions><![CDATA[
+            <manifest android:installLocation="auto">
+              <uses-sdk android:minSdkVersion="21"/>
+                <uses-permission android:name="android.permission.INTERNET"/>
+                <uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
+            </manifest>
+        ]]></manifestAdditions>
+    </android>
+    <iPhone> 
+        <InfoAdditions><![CDATA[ 
+            <key>UIStatusBarStyle</key> 
+            <string>UIStatusBarStyleBlackOpaque</string> 
+            <key>UIRequiresPersistentWiFi</key> 
+            <string>NO</string>
+            <key>UIPrerenderedIcon</key>  
+            <true/>
+            <key>UIApplicationExitsOnSuspend</key>
+            <true/>
+            <key>UIDeviceFamily</key>
+            <array>
+                <string>1</string> 
+                <string>2</string>
+            </array>                
+        ]]></InfoAdditions> 
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+    </iPhone> 
+    
+    <initialWindow>
+        <title>AIR Diagnostics Demo</title>
+        <content>AIRDiagnosticsDemo.swf</content>
+        <visible>true</visible>
+        <fullScreen>false</fullScreen>
+        <!--<autoOrients>false</autoOrients>-->
+        <!--<aspectRatio>landscape</aspectRatio>-->
+        <renderMode>direct</renderMode>
+        <!--<depthAndStencil>true</depthAndStencil>--> <!-- required for 3D -->
+    </initialWindow>
+    
+    <icon>
+        <image48x48>icons/icon_48.png</image48x48>
+        <image57x57>icons/icon_57.png</image57x57>
+        <image72x72>icons/icon_72.png</image72x72>
+        <image76x76>icons/icon_76.png</image76x76>
+        <image96x96>icons/icon_96.png</image96x96>
+        <image114x114>icons/icon_114.png</image114x114>
+        <image120x120>icons/icon_120.png</image120x120>
+        <image144x144>icons/icon_144.png</image144x144>
+        <image152x152>icons/icon_152.png</image152x152>
+    </icon>
+
+    <extensions>
+        <extensionID>com.harman.air.AIRDiagnostics</extensionID>
+    </extensions>
+
+</application>
