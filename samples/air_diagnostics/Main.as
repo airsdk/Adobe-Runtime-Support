@@ -39,6 +39,9 @@ package
 	 * close the message channel after 22 seconds. The error will be reported back to the app via the diagnostics
 	 * error mechanism. If the error is a 'channel closed' error, the Worker log will be read and traced out.
 	 *
+	 * The 'long_func' mechanism can result in a large log, so this is actually cleaned out periodically - when the
+	 * foreground worker receives a message from the background. Note that this requires 51.1.3.8 or later.
+	 *
 	 * Nothing appears on the screen for this test, the functionality needs to be checked via the trace log e.g. via
 	 * ADB (or "adt -deviceLog"), or via Adobe Scout or a Flash Debugger connection.
 	 */
@@ -118,6 +121,7 @@ package
 		private function onMessage(e : Event) : void
 		{
 			trace("Message received : " + _messageChannel.receive() as String);
+			_diagInfo.clearLog(AIRDiagnostics.DiagCheckLongFunc);
 		}
 		
 		private function deactivate(e:Event):void 
@@ -138,8 +142,19 @@ package
 				trace("We have " + reports.length + " diagnostic reports");
 				for each (var report : DiagnosticReport in reports)
 				{
-					trace(report.toString());
+					trace(" ----- Log Folder = " + report.folderName + " -----");
+					for each (var file : String in report.logFiles)
+					{
+						trace(" ..... Log category = " + file + " .....");
+						for each (var line : String in report.getLog(file))
+						{
+							trace(line);
+						}
+						trace(" ..... End of " + file + " log .....");
+					}
+					trace(" ----- End of " + report.folderName + " report -----");
 				}
+				trace(" ----- End of previous diagnostic information -----");
 			}
 			_diagInfo.clearReports();
 		}
@@ -158,6 +173,7 @@ package
 					var log : Vector.<String> = _diagInfo.getLog("worker");
 					if (log) for (var i : uint = 0; i < log.length; i++) trace(log[i]);
 					trace(" -- end of worker log --");
+					_diagInfo.clearLog(AIRDiagnostics.DiagLogWorker);
 				}
 			});
 		}
