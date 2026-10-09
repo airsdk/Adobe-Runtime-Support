@@ -1,0 +1,71 @@
+<project name="airx.media.ndi.ane" default="build">
+
+    <target name="swc">
+		<ant antfile="ane/swc/build.xml" target="build"/>
+	</target>
+    <target name="swc_clean">
+		<ant antfile="ane/swc/build.xml" target="clean"/>
+	</target>
+
+	<target name="native_clean">
+		<delete file="airx.media.ndi.dll"/>
+		<delete file="airx.media.ndi.exp"/>
+		<delete file="airx.media.ndi.lib"/>
+		<delete file="airx.media.ndi.obj"/>
+	</target>
+
+	<target name="native">
+		<exec executable="cl.exe" failonerror="true">
+			<arg value="ane/native/airx.media.ndi.cpp"/>
+			<arg value="-DWIN32"/>
+			<arg value="-I${AIR_SDK_HOME}/include"/>
+			<arg value="-IC:/Program Files/NDI/NDI 5 SDK/Include"/>
+			<arg value="/LD"/>
+			<arg value="/link /LIBPATH:C:/PROGRA~1/NDI/NDI5SD~1/Lib/x86"/>
+			<arg value="${AIR_SDK_HOME}/lib/win/FlashRuntimeExtensions.lib"/>
+		</exec>
+		<mkdir dir="ane/build/windows-platform" />
+		<copy file="airx.media.ndi.dll" todir="ane/build/windows-platform"/>
+	</target>
+
+	<target name="build" depends="swc,native">
+		<!-- copy the files to the right places -->
+		<mkdir dir="ane/build/default" />
+		<copy file="ane/swc/lib/library.swf" todir="ane/build/windows-platform"/>
+		<copy file="ane/swc/lib/library.swf" todir="ane/build/default"/>
+		<copy file="c:/Program Files/NDI/NDI 5 SDK/Bin/x86/Processing.NDI.Lib.x86.dll" todir="ane/build/windows-platform"/>
+		<copy file="c:/Program Files/NDI/NDI 5 SDK/Bin/x86/Processing.NDI.Lib.Licenses.txt" todir="ane/build/windows-platform"/>
+
+		<!-- create the ANE with just Windows 32-bit platform -->
+		<java fork="true" failonerror="yes" jar="${AIR_SDK_HOME}/lib/adt.jar">
+			<arg value="-package"/>
+			<arg value="-target"/>
+			<arg value="ane"/>
+			<arg value="airx.media.ndi.ane"/>
+			<arg value="ane/build/extension.xml"/>
+			<arg value="-swc"/>
+			<arg value="ane/swc/lib/ExtensionLibrary.swc"/>
+			<arg value="-platform"/>
+			<arg value="Windows-x86"/>
+			<arg value="-C"/>
+			<arg value="ane/build/windows-platform"/>
+			<arg value="."/>
+			<arg value="-platform"/>
+			<arg value="default"/>
+			<arg value="-C"/>
+			<arg value="ane/build/default"/>
+			<arg value="."/>
+		</java>
+
+	</target>
+
+	<target name="clean" depends="swc_clean,native_clean">
+		<delete file="ane/build/windows-platform/library.swf"/>
+		<delete file="ane/build/windows-platform/airx.media.ndi.dll"/>
+		<delete file="ane/build/windows-platform/Processing.NDI.Lib.x86.dll"/>
+		<delete file="ane/build/windows-platform/Processing.NDI.Lib.Licenses.txt"/>
+		<delete file="ane/build/default/library.swf" />
+		<delete file="airx.media.ndi.ane"/>
+	</target>
+	
+</project>

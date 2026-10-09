@@ -1,0 +1,24 @@
+<!-- NDI Rendering Demonstration ANE
+Provided as an example for how to use the MediaBuffer rendering mechanism
+in conjunction with NDI in order to inject video streams into the AIR display
+list. Not for production usage.
+NDI library is provided under the terms of the NDI SDK License Agreement
+and is copyright (c) 2023 Vizrt NDI AB (“NDI”). For further details please
+see the license text file provided within the Windows-x86 folder of this ANE.
+-->
+<extension xmlns="http://ns.adobe.com/air/extension/51.0">
+  <id>airx.media.ndi</id>
+  <versionNumber>1</versionNumber>
+  <platforms>
+	<platform name="Windows-x86">
+	  <applicationDeployment>
+		<nativeLibrary>airx.media.ndi.dll</nativeLibrary>
+		<initializer>InitExtension</initializer>
+		<finalizer>DestroyExtension</finalizer>
+	  </applicationDeployment>
+	</platform>
+	<platform name="default">
+	  <applicationDeployment />
+	</platform>
+  </platforms>
+</extension>
